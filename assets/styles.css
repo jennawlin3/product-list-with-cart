@@ -1,0 +1,238 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+:root {
+    --red: hsl(14, 86%, 42%);
+    --green: hsl(159, 69%, 38%);
+    --rose-50: hsl(20, 50%, 98%);
+    --rose-100: hsl(13, 31%, 94%);
+    --rose-300: hsl(14, 25%, 72%);
+    --rose-400: hsl(7, 20%, 60%);
+    --rose-500: hsl(12, 20%, 44%);
+    --rose-900: hsl(14, 65%, 9%);
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--rose-50);
+    font-family: "Red Hat Text", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.container {
+    padding: 40px 25px;
+}
+
+.container h1 {
+    color: var(--rose-900);
+    font-size: 2rem;
+    margin-bottom: 30px;
+    font-weight: 800;
+}
+
+.product-img_container {
+    position: relative;
+}
+
+.product-pic {
+    width: 100%;
+    height: 250px;
+    border-radius: 10px;
+}
+
+.cart-btn {
+     position: absolute;
+     bottom: -20px;
+     left: 50%;
+     transform: translateX(-50%);
+     padding: 12px 30px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     gap: 10px;
+     background-color: var(--rose-50);
+     border: 1px solid var(--rose-400);
+     border-radius: 25px;
+     font-weight: 600;
+     color: var(--rose-900);
+     font-size: 0.9rem;
+     font-family: "Red Hat Text", sans-serif;
+     cursor: pointer; 
+}
+
+.product-info {
+    margin: 30px 0;
+}
+
+.category {
+    color: var(--rose-500);
+}
+
+.product-name {
+    color: var(--rose-900);
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.price {
+    color: var(--red);
+    font-weight: 600;
+}
+
+.cart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    padding: 30px 30px 50px;
+    border-radius: 20px;
+    box-shadow: 3px 3px 10px var(--rose-100);
+}
+
+.cart-container h2 {
+    align-self: flex-start;
+    color: var(--red);
+}
+
+
+.empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.empty p {
+    color: var(--rose-500);
+    font-weight: 600;
+}
+
+.hide {
+    display: none;
+}
+
+.cart-items_container, .cart-content {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.cart-items {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--rose-100);
+}
+
+.cart-item {
+    margin: 20px 0;
+}
+
+.product-name {
+    margin-bottom: 10px;
+    color: var(--rose-900);
+    font-weight: 800;
+    font-size: 1rem;
+}
+
+.item-number_container {
+    display: flex;
+    gap: 20px;
+}
+
+.number {
+    color: var(--red);
+    font-weight: 800;
+}
+
+.ind-price {
+    color: var(--rose-500);
+}
+
+.total-price_container {
+    color: var(--rose-500);
+    font-weight: 600;
+}
+
+.delete-btn {
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 3px 6px;
+    border: 1px solid var(--rose-400);
+    cursor: pointer;
+}
+
+.total-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+}
+
+.total-account {
+    font-size: 1.6rem;
+    color: var(--rose-900);
+}
+
+.special-info {
+    background-color: var(--rose-100);
+    width: 100%;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.special-info p {
+    color: var(--rose-900);
+}
+
+.special-info p img {
+    margin-right: 10px;
+}
+
+.confirm-btn {
+    margin: 30px 0 0;
+    width: 100%;
+    height: 50px;
+    background-color: var(--red);
+    border: none;
+    border-radius: 25px;
+    color: var(--rose-100);    font-family: "Red Hat Text", sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+@media screen and (min-width: 768px) {
+    .products-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .products-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        max-width: 1200px;
+    }
+
+    .cart-container {
+        width: 500px;
+    }
+
+    .cart-btn {
+        padding: 12px 15px;
+        width: 70%;
+    }
+}

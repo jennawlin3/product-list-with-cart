@@ -13,62 +13,165 @@
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
+  <link rel="stylesheet" href="./assets/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
 </head>
 <body>
+<main class="container">
+<section class="menu-container">
+  <h1>Desserts</h1>
+  <div class="products-container">
 
-  Desserts
+  <div class="product">
 
-  Waffle with Berries
-  Waffle
-  6.50
-  Add to Cart
+    <div class="product-img_container">
+    <picture class="product-img">
+      <img src="./assets/images/image-waffle-mobile.jpg" alt="" srcset="" class="product-pic">
+    </picture>
+    <button class="cart-btn"><img src="./assets/images/icon-add-to-cart.svg" alt="cart icon" srcset="">Add to Cart</button>
+    
+    </div>
+    <div class="product-info">
+      <p class="category">Waffle</p>
+      <h2 class="product-name">Waffle with Berries</h2>
+      <p class="price">$6.50</p>
+    </div>
 
-  Vanilla Bean Crème Brûlée
-  Crème Brûlée
-  7.00
-  Add to Cart
+  </div>
+  
+  <div class="product">
 
-  Macaron Mix of Five
-  Macaron
-  8.00
-  Add to Cart
+    <div class="product-img_container">
+    <picture class="product-img">
+      <img src="./assets/images/image-waffle-mobile.jpg" alt="" srcset="" class="product-pic">
+    </picture>
+    <button class="cart-btn"><img src="./assets/images/icon-add-to-cart.svg" alt="cart icon" srcset="">Add to Cart</button>      
+    </div>
+    <div class="product-info">
+      <p class="category">Waffle</p>
+      <h2 class="product-name">Waffle with Berries</h2>
+      <p class="price">$6.50</p>
+    </div>
 
-  Classic Tiramisu
-  Tiramisu
-  5.50
-  Add to Cart
+  </div>
+  
+  <div class="product">
 
-  Pistachio Baklava
-  Baklava
-  4.00
-  Add to Cart
+    <div class="product-img_container">
+    <picture class="product-img">
+      <img src="./assets/images/image-waffle-mobile.jpg" alt="" srcset=""  class="product-pic">
+    </picture>
+    <button class="cart-btn"><img src="./assets/images/icon-add-to-cart.svg" alt="cart icon" srcset="">Add to Cart</button>      
+    </div>
+    <div class="product-info">
+      <p class="category">Waffle</p>
+      <h2 class="product-name">Waffle with Berries</h2>
+      <p class="price">$6.50</p>
+    </div>
 
-  Lemon Meringue Pie
-  Pie
-  5.00
-  Add to Cart
+  </div>
+  
+  <div class="product">
 
-  Red Velvet Cake
-  Cake
-  4.50
-  Add to Cart
+    <div class="product-img_container">
+    <picture class="product-img">
+      <img src="./assets/images/image-waffle-mobile.jpg" alt="" srcset="" class="product-pic">
+    </picture>
+    <button class="cart-btn"><img src="./assets/images/icon-add-to-cart.svg" alt="cart icon" srcset="">Add to Cart</button>      
+    </div>
+    <div class="product-info">
+      <p class="category">Waffle</p>
+      <h2 class="product-name">Waffle with Berries</h2>
+      <p class="price">$6.50</p>
+    </div>
 
-  Salted Caramel Brownie
-  Brownie
-  4.50
-  Add to Cart
+  </div>
 
-  Vanilla Panna Cotta
-  Panna Cotta
-  6.50
-  Add to Cart
+  </div>
+  <template id="product-card">
+  </template>
+</section>
+<section class="cart-container">
+  <h2>Your Cart (<span class="number-items">0</span>)</h2>
+  <div class="cart-content">
+    <!--Container of items-->
+    <div class="cart-items_container">
 
-  Your Cart (<!-- Quantity -->)
-  Your added items will appear here
+    <div class="cart-items">
+      <div class="cart-item">
+        <div class="item-info">
+        <p class="product-name">Classic Tiramisu</p>
+          <div class="item-number_container">
+            <p class="number"><span class="number-item">1</span>x</p>
+            <p class="ind-price">$5.50</p>
+            <p class="total-price_container">$<span class="total-price">5.50</span> </p>
+          </div>
+        </div>
+      </div>
+        <div class="delete-btn_container">
+          <button class="delete-btn"><img src="./assets/images/icon-remove-item.svg" alt="" srcset=""></button>
+        </div>
+    </div>
+
+    <div class="cart-items">
+      <div class="cart-item">
+        <div class="item-info">
+        <p class="product-name">Classic Tiramisu</p>
+          <div class="item-number_container">
+            <p class="number"><span class="number-item">1</span>x</p>
+            <p class="ind-price">$5.50</p>
+            <p class="total-price_container">$<span class="total-price">5.50</span> </p>
+          </div>
+        </div>
+      </div>
+        <div class="delete-btn_container">
+          <button class="delete-btn"><img src="./assets/images/icon-remove-item.svg" alt="" srcset=""></button>
+        </div>
+    </div>
+
+    <div class="cart-items">
+      <div class="cart-item">
+        <div class="item-info">
+        <p class="product-name">Classic Tiramisu</p>
+          <div class="item-number_container">
+            <p class="number"><span class="number-item">1</span>x</p>
+            <p class="ind-price">$5.50</p>
+            <p class="total-price_container">$<span class="total-price">5.50</span> </p>
+          </div>
+        </div>
+      </div>
+        <div class="delete-btn_container">
+          <button class="delete-btn"><img src="./assets/images/icon-remove-item.svg" alt="" srcset=""></button>
+        </div>
+    </div>
+
+    <div class="order-container">
+      <div class="total-info">
+        <p>Order Total</p>
+        <h3 class="total-account">$<span id="total-account">46.50</span> </h3>
+      </div>
+       <div class="special-info">
+        <p><img src="./assets/images/icon-carbon-neutral.svg" alt="" srcset="">This is a <b>carbon-neutral</b> delivery</p>
+       </div>
+       <button class="confirm-btn">Confirm Order</button>
+    </div>
+    </div>
+
+    <!-- Empty icon-->
+    <div class="empty hide">
+    <img src="./assets/images/illustration-empty-cart.svg" alt="" srcset="" class="empty active">
+    <p>You added items will appear here</p>      
+    </div>
+
+  </div>
+</section>
+</main>
 
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+    Coded by <a href="https://www.linkedin.com/in/jenn-acosta7/">Jenn Acosta</a>.
   </div>
 </body>
 </html>
