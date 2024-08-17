@@ -22,15 +22,22 @@
 <main class="container">
 <section class="menu-container">
   <h1>Desserts</h1>
-  <div class="products-container">
+  <div class="products-container" id="products-container">
 
+    <template id="product-grid">
+    </template>
+    
+    <!--
   <div class="product">
 
     <div class="product-img_container">
     <picture class="product-img">
       <img src="./assets/images/image-waffle-mobile.jpg" alt="" srcset="" class="product-pic">
     </picture>
+    <div class="buttons-container">
     <button class="cart-btn"><img src="./assets/images/icon-add-to-cart.svg" alt="cart icon" srcset="">Add to Cart</button>
+      <button class="add-remove_btn hide "><span class="addBtn"><img src="./assets/images/icon-decrement-quantity.svg" alt="decrement" srcset=""></span><span class="number-products">4</span><span class="removeBtn"><img src="./assets/images/icon-increment-quantity.svg" alt="increment" srcset=""></span></button> 
+    </div>
     
     </div>
     <div class="product-info">
@@ -88,33 +95,39 @@
     </div>
 
   </div>
+-->
 
   </div>
-  <template id="product-card">
-  </template>
 </section>
+
+
 <section class="cart-container">
   <h2>Your Cart (<span class="number-items">0</span>)</h2>
   <div class="cart-content">
     <!--Container of items-->
     <div class="cart-items_container">
 
-    <div class="cart-items">
-      <div class="cart-item">
-        <div class="item-info">
-        <p class="product-name">Classic Tiramisu</p>
-          <div class="item-number_container">
-            <p class="number"><span class="number-item">1</span>x</p>
-            <p class="ind-price">$5.50</p>
-            <p class="total-price_container">$<span class="total-price">5.50</span> </p>
-          </div>
-        </div>
-      </div>
-        <div class="delete-btn_container">
-          <button class="delete-btn"><img src="./assets/images/icon-remove-item.svg" alt="" srcset=""></button>
-        </div>
-    </div>
+      <template id="cart-items">
 
+        <div class="cart-items">
+          <div class="cart-item">
+            <div class="item-info">
+            <p class="product-name">Classic Tiramisu</p>
+              <div class="item-number_container">
+                <p class="number"><span class="number-item">1</span>x</p>
+                <p class="ind-price">$5.50</p>
+                <p class="total-price_container">$<span class="total-price">5.50</span> </p>
+              </div>
+            </div>
+          </div>
+            <div class="delete-btn_container">
+              <button class="delete-btn"><img src="./assets/images/icon-remove-item.svg" alt="" srcset=""></button>
+            </div>
+        </div>
+
+      </template>
+
+      <!--
     <div class="cart-items">
       <div class="cart-item">
         <div class="item-info">
@@ -157,10 +170,11 @@
        </div>
        <button class="confirm-btn">Confirm Order</button>
     </div>
-    </div>
 
+    </div>
+  -->
     <!-- Empty icon-->
-    <div class="empty hide">
+    <div class="empty">
     <img src="./assets/images/illustration-empty-cart.svg" alt="" srcset="" class="empty active">
     <p>You added items will appear here</p>      
     </div>
@@ -173,5 +187,6 @@
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
     Coded by <a href="https://www.linkedin.com/in/jenn-acosta7/">Jenn Acosta</a>.
   </div>
+  <script src="./app/app.js"></script>
 </body>
 </html>
