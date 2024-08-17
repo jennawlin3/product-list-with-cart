@@ -2,16 +2,20 @@ const d = document;
 const $productsContainer = document.querySelector("#products-container");
 const $productTemplate = document.getElementById("product-grid").content.cloneNode(true);
 let itemVal = 1;
+let currentProduct = 0;
 
-        fetch("./data.json")
+async function loadProducts() {
+
+        await fetch("./data.json")
         .then(response => response.json())
         .then(data => showInfo(data));
     
         function showInfo(data) {
-        data.forEach(d => {
+        data.forEach((d,index) => {
         // Card
         const $productCard = document.createElement("div");
         $productCard.classList.add("product-card");
+        $productCard.setAttribute("id", index+1)
 
         const $productImgContainer = document.createElement("div");
         $productImgContainer.classList.add("product-img_container");
@@ -37,7 +41,7 @@ let itemVal = 1;
         const $cartIcon = document.createElement("img");
         $cartIcon.setAttribute("src", "./assets/images/icon-add-to-cart.svg");
         $cartIcon.setAttribute("alt", "Cart Icon");
-
+        $cartBtn.setAttribute("data-id", index+1);
         $cartBtn.appendChild($cartIcon);
 
         // Add Remove Buttons
@@ -115,13 +119,29 @@ let itemVal = 1;
             })
         }
 
+        addFunctionality();
+}
+
+document.addEventListener("DOMContentLoaded", loadProducts())
+
 // Buttons
 
-document.addEventListener("DOMContentLoaded", e => {
-    if(e) {
+function addFunctionality() {
     const cartBtns = document.querySelectorAll(".cart-btn");
-    console.log(cartBtns);        
-    }
+    const addRemoveBtn = document.querySelectorAll(".add-remove_btn");
+    const productPic = document.querySelectorAll(".product-pic")
+    console.log(cartBtns);
 
-})
+    cartBtns.forEach(btn => {
+        btn.addEventListener("click", e => {
+            currentProduct = parseInt(e.currentTarget.dataset.id);
+            console.log(typeof currentProduct);
+
+            e.currentTarget.classList.add("hide");
+            addRemoveBtn[currentProduct-1].classList.remove("hide");
+            productPic[currentProduct-1].style.border = "3px solid var(--red)"
+    })
+
+    })
+}    
 
