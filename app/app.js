@@ -155,6 +155,8 @@ const $removeBtns = document.querySelectorAll(".remove-btn");
 const $numberProducts = document.querySelectorAll(".number-products");
 const $productName = document.querySelectorAll(".product-name");
 const $productPrice = document.querySelectorAll(".price");
+const $iconAddBtn = document.querySelectorAll(".add-btn img");
+const $iconRemoveBtn = document.querySelectorAll(".remove-btn img");
 
 let itemCount;
 
@@ -164,6 +166,12 @@ let itemCount;
         incrementItems(index);
         }
     })
+    addBtn.addEventListener("mouseover", e => {
+    $iconAddBtn[index].setAttribute("src", "./assets/images/icon-increment-quantity1.svg");
+    })
+    addBtn.addEventListener("mouseout", e => {
+        $iconAddBtn[index].setAttribute("src", "./assets/images/icon-increment-quantity.svg");
+    })
  })
 
  $removeBtns.forEach((removeBtn,index) => {
@@ -172,6 +180,12 @@ let itemCount;
             decrementItems(index);
         }
     })
+    removeBtn.addEventListener("mouseover", e => {
+        $iconRemoveBtn[index].setAttribute("src", "./assets/images/icon-decrement-quantity1.svg");
+        })
+        removeBtn.addEventListener("mouseout", e => {
+            $iconRemoveBtn[index].setAttribute("src", "./assets/images/icon-decrement-quantity.svg");
+        })
  })
 
  function incrementItems(index) {
