@@ -107,25 +107,8 @@
     <!--Container of items-->
     <div class="cart-items_container">
 
-      <template id="cart-items">
-
-        <div class="cart-items">
-          <div class="cart-item">
-            <div class="item-info">
-            <p class="product-name">Classic Tiramisu</p>
-              <div class="item-number_container">
-                <p class="number"><span class="number-item">1</span>x</p>
-                <p class="ind-price">$5.50</p>
-                <p class="total-price_container">$<span class="total-price">5.50</span> </p>
-              </div>
-            </div>
-          </div>
-            <div class="delete-btn_container">
-              <button class="delete-btn"><img src="./assets/images/icon-remove-item.svg" alt="" srcset=""></button>
-            </div>
-        </div>
-
-      </template>
+      <div id="cart-items">
+      </div>
 
       <!--
     <div class="cart-items">
@@ -159,11 +142,11 @@
           <button class="delete-btn"><img src="./assets/images/icon-remove-item.svg" alt="" srcset=""></button>
         </div>
     </div>
-
-    <div class="order-container">
+  -->
+    <div class="order-container hide">
       <div class="total-info">
         <p>Order Total</p>
-        <h3 class="total-account">$<span id="total-account">46.50</span> </h3>
+        <h3 class="total-account">$<span id="total-account">46.50</span></h3>
       </div>
        <div class="special-info">
         <p><img src="./assets/images/icon-carbon-neutral.svg" alt="" srcset="">This is a <b>carbon-neutral</b> delivery</p>
@@ -172,7 +155,7 @@
     </div>
 
     </div>
-  -->
+
     <!-- Empty icon-->
     <div class="empty">
     <img src="./assets/images/illustration-empty-cart.svg" alt="" srcset="" class="empty active">

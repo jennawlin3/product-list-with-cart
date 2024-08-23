@@ -167,7 +167,7 @@ body {
     font-size: 1rem;
 }
 
-.item-number_container {
+.item-number__container {
     display: flex;
     gap: 20px;
 }
@@ -186,7 +186,7 @@ body {
     font-weight: 600;
 }
 
-.delete-btn {
+.delete-btn-container button {
     background-color: #fff;
     border-radius: 50%;
     padding: 3px 6px;
@@ -232,6 +232,10 @@ body {
     color: var(--rose-100);    font-family: "Red Hat Text", sans-serif;
     font-size: 1rem;
     font-weight: 500;
+}
+
+.order-container {
+    order: 2;
 }
 
 @media screen and (min-width: 768px) {
