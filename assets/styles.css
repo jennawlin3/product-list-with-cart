@@ -63,10 +63,16 @@ body {
      font-family: "Red Hat Text", sans-serif;
      cursor: pointer; 
      width: 70%;
+     outline: none;
 }
 
 .cart-btn {
     flex-direction: row-reverse;
+}
+
+.cart-btn:hover {
+    border: 1px solid var(--red);
+    color: var(--red);
 }
 
 .add-remove_btn {
@@ -140,7 +146,7 @@ body {
 }
 
 .hide {
-    display: none;
+    display: none !important;
 }
 
 .cart-items_container, .cart-content {
@@ -191,8 +197,13 @@ body {
     background-color: #fff;
     border-radius: 50%;
     padding: 3px 6px;
-    border: 1px solid var(--rose-400);
+    border: 1px solid var(--rose-300);
     cursor: pointer;
+    outline: none;
+}
+
+.delete-btn-container button:hover {
+    border: 1px solid var(--rose-900);
 }
 
 .total-info {
@@ -234,6 +245,11 @@ body {
     font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
+    outline: none;
+}
+
+.confirm-btn:hover, .start-order_btn:hover {
+    background-color: #8d2809;
 }
 
 .order-container {

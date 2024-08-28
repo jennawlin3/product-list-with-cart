@@ -8,6 +8,7 @@ let bill = {};
 let totalProducts = {};
 
 async function loadProducts() {
+    const container = document.querySelector(".container");
 
         await fetch("./data.json")
         .then(response => response.json())
@@ -122,19 +123,17 @@ async function loadProducts() {
             })
         }
 
+        const overlay = document.createElement("div");
+        overlay.classList.add("overlay");
+        overlay.classList.add("hide");
+        container.appendChild(overlay);
+
         addBtnFunctionality();
 }
 
 document.addEventListener("DOMContentLoaded", loadProducts())
 
-// Buttons
-
-function addFunctionality() {
-
-}    
-
-
-// Add/Remove Buttons
+//Buttons
 function addBtnFunctionality() {
     const cartBtns = document.querySelectorAll(".cart-btn");
     const addRemoveBtn = document.querySelectorAll(".add-remove_btn");
@@ -243,11 +242,11 @@ let itemCount;
         }
     }
 
-    updateCart(cart, increase = true);
+    updateCart(cart);
  }   
 }
 
-function updateCart(cart, option) {
+function updateCart(cart) {
     const CartContainer = document.querySelector(".cart-items_container");
     const orderContainer = document.querySelector(".order-container");
     const numberItemCart = document.querySelector(".number-items");
@@ -269,7 +268,6 @@ function updateCart(cart, option) {
 
     if(cart!== undefined) {
     let products = Object.entries(cart);
-    console.log(products);
 
     products.forEach((item, index) => {
 
@@ -281,10 +279,7 @@ function updateCart(cart, option) {
         }
 
         let sumProducts = Object.values(totalProducts).reduce((acum, cur) => acum + cur);
-
         numberItemCart.textContent = sumProducts;
-
-        console.log(sumProducts);
 
         // Total bill
         if(!bill[index]) {
@@ -294,7 +289,6 @@ function updateCart(cart, option) {
         }
 
         let fullBill = Object.values(bill).reduce((acum, cur) => acum + cur);
-
         totalBill.textContent = fullBill;
 
 
@@ -382,8 +376,20 @@ function updateCart(cart, option) {
                 if(e) {
                     deleteAllItems(index);
                 }
+            });
+
+            deleteBtn.addEventListener("mouseover", e => {
+                if(e) {
+                    deleteIcon.setAttribute("src", "./assets/images/icon-remove-item1.svg");
+                }
             })
-        }) 
+            
+            deleteBtn.addEventListener("mouseout", e => {
+                if(e) {
+                    deleteIcon.setAttribute("src", "./assets/images/icon-remove-item.svg");
+                }
+            })
+        });
 
     }) 
     } 
@@ -397,7 +403,6 @@ function decrementItems(index) {
     const productPic = document.querySelectorAll(".product-pic");
 
     if(cart[index].items === 0) {
-        console.log(cart);
         delete cart[index];
         updateCart(cart);
 
@@ -430,8 +435,6 @@ function deleteAllItems(index) {
     const orderContainer = document.querySelector(".order-container");
     const empty = document.querySelector(".empty");
 
-    console.log(cartBtn);
-
     if(cartItems[index].textContent === products[index].name) {
         let number = products[index].id;
         cart[number].items = 0;
@@ -451,15 +454,13 @@ function deleteAllItems(index) {
         delete totalProducts[index]; 
 
         if(Object.values(totalProducts).length === 0) {
-        numberItems.textContent = "0"; 
-        console.log();       
+        numberItems.textContent = "0";        
         } else {
             totalProducts = {};
         }
 
         if(Object.values(bill).length === 0) {
-            totalAccount.textContent = "0"; 
-            console.log();       
+            totalAccount.textContent = "0";       
             } else {
                 bill = {};
             }       
@@ -474,14 +475,14 @@ function deleteAllItems(index) {
 function showOrderCard() {
     const orderCard = document.querySelector(".confirm-order_container");
     const totalOrder = document.querySelector(".total-order");
-    const overlay = document.createElement("div");
-    overlay.classList.add("overlay");
+    const overlay = document.querySelector(".overlay");
     const container = document.querySelector(".container");
     let billTotal = Object.values(bill);
+    let valuesCart = Object.values(cart);
 
-    if(cart !== {}) {
+    if(valuesCart.length > 0) {
     let products = Object.values(cart);
-    console.log(products);
+
     products.forEach(product => {
         const itemsContainer = document.querySelector(".items-cart");
 
@@ -545,7 +546,7 @@ function showOrderCard() {
     })
 
     orderCard.classList.remove("hide");
-    container.appendChild(overlay);
+    overlay.classList.remove("hide");
 
     const startOrder = document.querySelector(".start-order_btn");
 
@@ -554,25 +555,59 @@ function showOrderCard() {
             deleteCart();
         }
     })        
+    } else {
+        return;
     }
 
 }
 
 function deleteCart() {
+    const itemsCart = document.querySelector(".items-cart");
+
+    itemsCart.textContent = "";
+
     const numberItems = document.querySelector(".number-items");
     const totalAccount = document.querySelector("#total-account");
     const confirmOrderContainer = document.querySelector(".confirm-order_container");
     const overlay = document.querySelector(".overlay");
+    const numberProductsCard = document.querySelectorAll(".number-products");
+    const productPic = document.querySelectorAll(".product-pic");
+    const addRemoveBtn = document.querySelectorAll(".add-remove_btn");
+    const cartBtn = document.querySelectorAll(".cart-btn");
 
-    
+    let valuesCart =  Object.keys(cart);
+    valuesCart.forEach(val => {
+        cart[val].items = 0;
+        cart[val].price2 = 0;
+        delete cart[val];
+    });
+
+    let valuesBill =  Object.keys(bill);
+    valuesBill.forEach(val => {
+        bill[val] = 0;
+        delete bill[val];
+    });
+
+    let valuesProducts =  Object.keys(totalProducts);
+    valuesProducts.forEach(val => {
+        totalProducts[val] = 0;
+        delete totalProducts[val];
+    });
+
+    numberProductsCard.forEach((el, index) => {
+        numberProductsCard[index].textContent = 0;
+        addRemoveBtn[index].classList.add("hide");
+        cartBtn[index].classList.remove("hide");
+        productPic[index].style.border = "none";
+    })
 
     cart = {};
     totalProducts = {}; 
     bill = {};
 
-
     numberItems.textContent = "0";
     totalAccount.textContent = "0";
+
 
     updateCart(cart);
     confirmOrderContainer.classList.add("hide");
