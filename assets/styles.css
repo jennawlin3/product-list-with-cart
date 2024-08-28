@@ -184,7 +184,7 @@ body {
     font-weight: 800;
 }
 
-.ind-price {
+.ind-price_container {
     color: var(--rose-500);
 }
 
