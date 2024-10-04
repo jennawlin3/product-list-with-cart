@@ -6,6 +6,7 @@ let currentProduct = 0;
 let cart = {};
 let bill = {};
 let totalProducts = {};
+let update = false;
 
 async function loadProducts() {
     const container = document.querySelector(".container");
@@ -166,7 +167,6 @@ const $iconAddBtn = document.querySelectorAll(".add-btn img");
 const $iconRemoveBtn = document.querySelectorAll(".remove-btn img");
 const $productPic = document.querySelectorAll(".product-pic");
 
-
 let itemCount;
 
  $addBtns.forEach((addBtn, index) => {
@@ -212,7 +212,7 @@ let itemCount;
     } 
 
     numberProducts[index].textContent = 1;
-
+    update = true;
     updateCart(cart);
  }
 
@@ -241,24 +241,29 @@ let itemCount;
             items: itemCount++
         }
     }
-
+    update = true;
     updateCart(cart);
  }   
 }
 
 function updateCart(cart) {
+    if(update === false) {
+        return;
+    } else {
+
     const CartContainer = document.querySelector(".cart-items_container");
     const orderContainer = document.querySelector(".order-container");
     const numberItemCart = document.querySelector(".number-items");
 
     const empty = document.querySelector(".empty");
 
-    if(cart !== "") {
+    if(Object.values(cart).length !== 0) {
         empty.classList.add("hide");
         orderContainer.classList.remove("hide");
     } else {
         empty.classList.remove("hide");
         orderContainer.classList.add("hide");
+        numberItemCart.textContent = 0;
     }
 
     const cartItemsContainer = document.querySelector("#cart-items");
@@ -270,31 +275,36 @@ function updateCart(cart) {
     let products = Object.entries(cart);
 
     products.forEach((item, index) => {
-
+        console.log(item[1].id);
         // Total items in cart
-        if(!totalProducts[index]) {
-            totalProducts[index] = Number(item[1].items);
-        } else {
-            totalProducts[index] = Number(item[1].items);
+        if(!totalProducts[Number(item[1].id)]) {
+            totalProducts[Number(item[1].id)] = Number(item[1].items);
+        } 
+        if(totalProducts[Number(item[1].id)]){
+            totalProducts[Number(item[1].id)] = Number(item[1].items);
         }
 
+        console.log(Object.values(totalProducts));
+
+        if(Object.values(totalProducts).length > 0) {
         let sumProducts = Object.values(totalProducts).reduce((acum, cur) => acum + cur);
         numberItemCart.textContent = sumProducts;
+        console.log(totalProducts);          
+        }
 
         // Total bill
-        if(!bill[index]) {
-            bill[index] = Number(item[1].price2);
+        if(!bill[Number(item[1].id)]) {
+            bill[Number(item[1].id)] = Number(item[1].price2);
         } else {
-            bill[index] = Number(item[1].price2);
+            bill[Number(item[1].id)] = Number(item[1].price2);
         }
 
         let fullBill = Object.values(bill).reduce((acum, cur) => acum + cur);
         totalBill.textContent = fullBill;
 
-
-
         const cartItems = document.createElement("div");
         cartItems.classList.add("cart-items");
+        cartItems.dataset.id = item[1].id;
 
         const cartItem = document.createElement("div");
         cartItem.classList.add("cart-item");
@@ -393,47 +403,71 @@ function updateCart(cart) {
 
     }) 
     } 
+    console.log(cart);
+    update = false;
+    return;
+    }
 }
 
 function decrementItems(index) {    
     const orderContainer = document.querySelector(".order-container");
+    const cartItems = document.querySelector("#cart-items");
+    const cartItem = document.querySelectorAll(".cart-items");
     const empty = document.querySelector(".empty");
     const addRemoveBtn = document.querySelectorAll(".add-remove_btn");
     const cartBtn = document.querySelectorAll(".cart-btn");
     const productPic = document.querySelectorAll(".product-pic");
+    const numberItems = document.querySelector(".number-items");    
+    
+    cart[index].items--;
+    cart[index].price2 -= cart[index].price1;
 
     if(cart[index].items === 0) {
         delete cart[index];
-        updateCart(cart);
+        delete totalProducts[index];
 
+        cartItem.forEach(item => {
+
+         if(String(index) === item.getAttribute("data-id")) {
+            cartItems.removeChild(item);
+            return;
+         }   
+        })
+
+        if(Object.values(cart).length === 0) {
         empty.classList.remove("hide");
-        orderContainer.classList.add("hide");
+        orderContainer.classList.add("hide");            
+        }
+
         addRemoveBtn[index].classList.add("hide");
         cartBtn[index].classList.remove("hide");
         productPic[index].style.border = "none";
-
-        return;
     }
-    cart[index].items--;
-    cart[index].price2 -= cart[index].price1;
     const numberProducts = document.querySelectorAll(".number-products");
+    console.log(cart[index]);
 
-    numberProducts[index].textContent = cart[index].items;
+    if(cart[index] === undefined) {
+      numberProducts[index].textContent = 0;
+      numberItems.textContent = 0;  
+    } else {
+        numberProducts[index].textContent = cart[index].items;  
+    }
 
     totalProducts = {};
     bill = {};
+    update = true;
     updateCart(cart);
+    return;
 }
 
 function deleteAllItems(index) {
     const cartItems = document.querySelectorAll(".cart-items .cart-item .item-info .product-name");
-    const productName = document.querySelectorAll(".product-name");
     const products = Object.values(cart);
     const addRemoveBtn = document.querySelectorAll(".add-remove_btn");
     const cartBtn = document.querySelectorAll(".cart-btn");
-    const productPic = document.querySelectorAll(".product-pic");    
-    const orderContainer = document.querySelector(".order-container");
-    const empty = document.querySelector(".empty");
+    const productPic = document.querySelectorAll(".product-pic");  
+    
+    console.log(index);
 
     if(cartItems[index].textContent === products[index].name) {
         let number = products[index].id;
@@ -468,6 +502,7 @@ function deleteAllItems(index) {
         addRemoveBtn[number].classList.add("hide");
         cartBtn[number].classList.remove("hide");
         productPic[number].style.border = "none";
+        update = true;
         updateCart(cart);
     }
 }
@@ -574,6 +609,8 @@ function deleteCart() {
     const productPic = document.querySelectorAll(".product-pic");
     const addRemoveBtn = document.querySelectorAll(".add-remove_btn");
     const cartBtn = document.querySelectorAll(".cart-btn");
+    const orderOptions = document.querySelector(".order-container");
+    const empty = document.querySelector(".empty");
 
     let valuesCart =  Object.keys(cart);
     valuesCart.forEach(val => {
@@ -608,10 +645,12 @@ function deleteCart() {
     numberItems.textContent = "0";
     totalAccount.textContent = "0";
 
-
+    update = true;
     updateCart(cart);
     confirmOrderContainer.classList.add("hide");
     overlay.classList.add("hide");
+    orderOptions.classList.add("hide");
+    empty.classList.remove("hide");
 }
 
 
